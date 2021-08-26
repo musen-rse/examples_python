@@ -2,8 +2,8 @@ import threading
 
 from matplotlib import pyplot as plt
 
-from observer_chart_solution.sensors import HumiditySensor, TemperatureSensor
-from observer_chart_solution.charts import BarChart, LineChart
+from observer_solution2_dip_dry.sensors import HumiditySensor, TemperatureSensor
+from observer_solution2_dip_dry.charts import BarChart, LineChart
 
 
 class Application:
@@ -11,17 +11,16 @@ class Application:
         plt.ion()
         self.event = threading.Event()
         self.figure, (self.line_ax, self.bar_ax) = plt.subplots(ncols=2)
-        self.figure.canvas.mpl_connect("close_event", lambda _: self.event.set())
+        self.figure.canvas.mpl_connect(
+            "close_event", lambda _: self.event.set())
 
         self.temperature_sensor = TemperatureSensor()
         self.humdity_sensor = HumiditySensor()
-        self.line_chart: LineChart = LineChart(
-            self.line_ax, self.temperature_sensor, self.humdity_sensor
-        )
+        self.line_chart = LineChart(
+            self.line_ax, self.temperature_sensor, self.humdity_sensor)
 
-        self.bar_chart: BarChart = BarChart(
-            self.bar_ax, self.temperature_sensor, self.humdity_sensor
-        )
+        self.bar_chart = BarChart(
+            self.bar_ax, self.temperature_sensor, self.humdity_sensor)
 
     def run(self) -> None:
         while not self.event.wait(1):

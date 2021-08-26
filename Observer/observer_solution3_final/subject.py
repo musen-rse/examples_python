@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import List
-from observer_chart_solution.observer import Observer
+from observer_solution3_final.observer import Observer
 
 
 class Subject(ABC):

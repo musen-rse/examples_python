@@ -1,5 +1,5 @@
 import random
-from observer_chart_solution.subject import Subject
+from observer_solution3_final.subject import Subject
 
 
 class HumiditySensor(Subject):
