@@ -1,4 +1,4 @@
-from factory_method_solution.shapefactory import ShapeFactory
+from core.abstractions import Shape, ShapeFactory
 
 
 class Application:
@@ -6,7 +6,7 @@ class Application:
         self.shape_factory = shape_factory
 
     def run(self):
-        shapes = [
+        shapes: List[Shape] = [
             self.shape_factory.create_circle(),
             self.shape_factory.create_rectangle(),
             self.shape_factory.create_triangle(),
