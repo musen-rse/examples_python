@@ -1,16 +1,20 @@
-from abc import ABC, abstractmethod
+from core.abstractions import Shape, ShapeFactory
 from typing import List
-from common.shapes import Circle, Rectangle, Shape, Triangle
 
 
-class ShapeFactory(ABC):
-    @abstractmethod
-    def create_shape(self, shape: str) -> Shape:
-        pass
+class Circle(Shape):
+    def draw(self):
+        print("Drawing Circle")
 
-    @abstractmethod
-    def get_shape_choices(self) -> List[str]:
-        pass
+
+class Rectangle(Shape):
+    def draw(self):
+        print("Drawing Rectangle")
+
+
+class Triangle(Shape):
+    def draw(self):
+        print("Drawing Triangle")
 
 
 class ShapeFactoryImpl(ShapeFactory):
