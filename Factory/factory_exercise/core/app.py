@@ -1,13 +1,13 @@
-from common.shapes import Circle, Rectangle, Triangle
+from shapes import Circle, Rectangle
+from core.abstractions import Shape
 
 
 class Application:
     def run(self):
-        shapes = []
+        shapes: List[Shape] = []
 
         shapes.append(Circle())
         shapes.append(Rectangle())
-        shapes.append(Triangle())
 
         for shape in shapes:
             shape.draw()
