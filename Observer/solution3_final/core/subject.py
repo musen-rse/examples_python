@@ -1,6 +1,6 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 from typing import List
-from observer_solution3_final.observer import Observer
+from core.observer import Observer
 
 
 class Subject(ABC):

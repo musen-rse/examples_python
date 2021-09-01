@@ -1,28 +1,21 @@
-from abc import ABC, abstractmethod
 from datetime import datetime
 
 from matplotlib.axes import Axes
-from observer_solution1_dip.sensors import TemperatureSensor
+
+from core.sensors import TemperatureSensor
 
 
-class Chart(ABC):
-
-    @abstractmethod
-    def update(self, sensor: TemperatureSensor):
-        pass
-
-
-class LineChart(Chart):
+class LineChart:
 
     def __init__(self, axes: Axes, sensor: TemperatureSensor) -> None:
-        sensor.attach_chart(self)
-        
+        sensor.set_chart(self)
+
         self.axes = axes
         self.temperature_line = self.initial_plot(sensor.temperature)
         self.configure_axes()
 
-    def update(self, sensor: TemperatureSensor) -> None:
-        self.update_line(self.temperature_line, sensor.temperature)
+    def update(self, temperature: int) -> None:
+        self.update_line(self.temperature_line, temperature)
         self.set_axes_limits()
 
     def initial_plot(self, yvalue):
@@ -50,21 +43,3 @@ class LineChart(Chart):
         self.axes.legend(["Temperature"])
         self.axes.set_xlabel("Time")
         self.axes.set_ylabel("Temperature")
-
-
-class BarChart(Chart):
-    def __init__(self, axes: Axes, sensor: TemperatureSensor) -> None:
-        sensor.attach_chart(self)
-
-        self.axes = axes
-        self.temperature_bar = self.axes.bar(0, 0)
-
-        self.temperature_sensor = sensor
-
-    def update(self, sensor: TemperatureSensor) -> None:
-        self.temperature_bar[0].set_height(sensor.temperature)
-        self.set_axes_limits()
-
-    def set_axes_limits(self):
-        max_temperature = max((self.temperature_bar[0].get_height(), 100))
-        self.axes.set_ylim(0, max_temperature)

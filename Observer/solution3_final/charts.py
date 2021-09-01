@@ -1,21 +1,20 @@
-from abc import ABC, abstractmethod
 from datetime import datetime
-from observer_solution2_dip_dry.sensors import HumiditySensor, Sensor, TemperatureSensor
 
 from typing import Any
 
 from matplotlib.axes import Axes
+from core.observer import Observer
+from core.sensors import HumiditySensor, TemperatureSensor
 
 
-class Chart(ABC):
+class LineChart(Observer):
+    def __init__(
+        self,
+        axes: Axes,
+        temperature_sensor: TemperatureSensor,
+        humidity_sensor: HumiditySensor,
+    ) -> None:
 
-    @abstractmethod
-    def update(self, sensor: TemperatureSensor):
-        pass
-
-
-class LineChart(Chart):
-    def __init__(self, axes: Axes, temperature_sensor: TemperatureSensor, humidity_sensor: HumiditySensor) -> None:
         self.axes = axes
         self.temperature_line = self.initial_plot(temperature_sensor.temperature)
         self.humidity_line = self.initial_plot(humidity_sensor.humidity)
@@ -24,15 +23,14 @@ class LineChart(Chart):
         self.temperature_sensor = temperature_sensor
         self.humidity_sensor = humidity_sensor
 
-        self.temperature_sensor.attach_chart(self)
-        self.humidity_sensor.attach_chart(self)
+        self.temperature_sensor.register(self)
+        self.humidity_sensor.register(self)
 
-    def update(self, sensor: Sensor) -> None:
-        if sensor is self.temperature_sensor:
-            self.update_line(self.temperature_line,
-                             self.temperature_sensor.temperature)
+    def update(self, sender: Any, *args, **kwargs) -> None:
+        if sender is self.temperature_sensor:
+            self.update_line(self.temperature_line, self.temperature_sensor.temperature)
 
-        if sensor is self.humidity_sensor:
+        if sender is self.humidity_sensor:
             self.update_line(self.humidity_line, self.humidity_sensor.humidity)
 
         self.set_axes_limits()
@@ -58,8 +56,7 @@ class LineChart(Chart):
         min_humidity = min(self.humidity_line.get_ydata())
         max_humidity = max(self.humidity_line.get_ydata())
         self.axes.set_ylim(
-            min(min_temperature, min_humidity), max(
-                max_temperature, max_humidity)
+            min(min_temperature, min_humidity), max(max_temperature, max_humidity)
         )
 
     def configure_axes(self):
@@ -68,23 +65,28 @@ class LineChart(Chart):
         self.axes.set_ylabel("Temperature | Humidity")
 
 
-class BarChart(Chart):
-    def __init__(self, axes: Axes, temperature_sensor: TemperatureSensor, humidity_sensor: HumiditySensor) -> None:
+class BarChart(Observer):
+    def __init__(
+        self,
+        axes: Axes,
+        temperature_sensor: TemperatureSensor,
+        humidity_sensor: HumiditySensor,
+    ) -> None:
+
         self.axes = axes
         self.temperature_bar = self.axes.bar(0, 0)
         self.humidity_bar = self.axes.bar(1, 0)
 
         self.temperature_sensor = temperature_sensor
         self.humidity_sensor = humidity_sensor
-        self.temperature_sensor.attach_chart(self)
-        self.humidity_sensor.attach_chart(self)
+        self.temperature_sensor.register(self)
+        self.humidity_sensor.register(self)
 
-    def update(self, sensor: Sensor) -> None:
-        if sensor is self.temperature_sensor:
-            self.temperature_bar[0].set_height(
-                self.temperature_sensor.temperature)
+    def update(self, sender: Any, *args, **kwargs) -> None:
+        if sender is self.temperature_sensor:
+            self.temperature_bar[0].set_height(self.temperature_sensor.temperature)
 
-        if sensor is self.humidity_sensor:
+        if sender is self.humidity_sensor:
             self.humidity_bar[0].set_height(self.humidity_sensor.humidity)
 
         self.set_axes_limits()

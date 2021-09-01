@@ -2,8 +2,8 @@ import threading
 
 from matplotlib import pyplot as plt
 
-from observer_solution2_dip_dry.sensors import HumiditySensor, TemperatureSensor
-from observer_solution2_dip_dry.charts import BarChart, LineChart
+from core.sensors import HumiditySensor, TemperatureSensor
+from charts import BarChart, LineChart
 
 
 class Application:
