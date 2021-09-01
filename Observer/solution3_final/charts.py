@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import Any
 
 from matplotlib.axes import Axes
-from core.observer import Observer
+from core.observer_abc import Observer
 from core.sensors import HumiditySensor, TemperatureSensor
 
 
@@ -12,7 +12,7 @@ class LineChart(Observer):
         self,
         axes: Axes,
         temperature_sensor: TemperatureSensor,
-        humidity_sensor: HumiditySensor,
+        humidity_sensor: HumiditySensor
     ) -> None:
 
         self.axes = axes

@@ -1,5 +1,5 @@
 import random
-from core.subject import Subject
+from core.observer_abc import Subject
 
 
 class HumiditySensor(Subject):

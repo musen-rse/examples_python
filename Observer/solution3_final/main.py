@@ -1,3 +1,9 @@
 from app import Application
 
-Application().run()
+
+def main():
+    Application().run()
+
+
+if __name__ == "__main__":
+    main()

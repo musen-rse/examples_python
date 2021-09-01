@@ -1,6 +1,11 @@
-from abc import ABC
-from typing import List
-from core.observer import Observer
+from abc import ABC, abstractmethod
+from typing import Any, List
+
+
+class Observer(ABC):
+    @abstractmethod
+    def update(self, sender: Any, *args, **kwargs):
+        pass
 
 
 class Subject(ABC):
