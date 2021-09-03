@@ -1,23 +1,10 @@
 import random
-from abc import ABC, abstractmethod
-from typing import List
+from abc import abstractmethod
 
-from core.charts_abc import Chart
+from core.observer_abc import Subject
 
 
-class Sensor(ABC):
-    def __init__(self) -> None:
-        self.charts: List[Chart] = []
-
-    def add_chart(self, chart: Chart) -> None:
-        self.charts.append(chart)
-
-    def remove_chart(self, chart: Chart) -> None:
-        self.charts.remove(chart)
-
-    def draw_all(self, value: float) -> None:
-        for chart in self.charts:
-            chart.draw(value)
+class Sensor(Subject[float]):
 
     @abstractmethod
     def measure(self) -> float:
@@ -34,7 +21,7 @@ class TemperatureSensor(Sensor):
         change = random.randint(-5, 5)
         self.temperature = self._temperature + change
 
-        self.draw_all(self.temperature)
+        self.notify_all(self.temperature)
 
     @property
     def temperature(self):
@@ -55,7 +42,7 @@ class HumiditySensor(Sensor):
         change = random.randint(-2, 2)
         self.humidity = self._humidity + change
 
-        self.draw_all(self.humidity)
+        self.notify_all(self.humidity)
 
     @property
     def humidity(self):

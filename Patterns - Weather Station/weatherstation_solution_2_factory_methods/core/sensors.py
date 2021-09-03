@@ -1,7 +1,7 @@
 import random
 from typing import List
 
-from sensorchart.charts import Chart
+from charts import Chart
 
 
 class TemperatureSensor:

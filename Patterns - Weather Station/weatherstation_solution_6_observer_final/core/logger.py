@@ -1,5 +1,5 @@
 from typing import Any, TextIO
-from sensorchart.core.observer_abc import Observer
+from core.observer_abc import Observer
 
 
 class ObservingLogger(Observer[float]):

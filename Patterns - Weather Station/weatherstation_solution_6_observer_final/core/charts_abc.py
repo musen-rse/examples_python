@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from sensorchart.core.observer_abc import Observer
+from core.observer_abc import Observer
 from typing import Any, List
 
 

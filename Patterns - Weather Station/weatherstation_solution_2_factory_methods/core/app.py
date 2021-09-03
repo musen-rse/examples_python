@@ -1,8 +1,8 @@
 import threading
 
 from typing import List
-from sensorchart.core.charts_abc import Chart, ChartFactory
-from sensorchart.core.sensors import TemperatureSensor
+from core.charts_abc import Chart, ChartFactory
+from core.sensors import TemperatureSensor
 
 
 class Application:

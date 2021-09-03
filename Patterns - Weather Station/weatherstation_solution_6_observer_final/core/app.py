@@ -1,6 +1,7 @@
 import threading
 
 from core.charts_abc import ChartFactory
+from core.logger import ObservingLogger
 from core.sensors import HumiditySensor, TemperatureSensor, Sensor
 
 
@@ -14,16 +15,20 @@ class Application:
         self._choose_chart_for_sensor(self.temperature_sensor, "Temperature")
         self._choose_chart_for_sensor(self.humidity_sensor, "Humidity")
 
-        stop_event = threading.Event()
-        while not stop_event.wait(1):
-            self._clear_console()
-            self.temperature_sensor.measure()
-            self.humidity_sensor.measure()
+        with ObservingLogger("output.txt") as logger:
+            self.temperature_sensor.register(logger)
+            self.humidity_sensor.register(logger)
+
+            stop_event = threading.Event()
+            while not stop_event.wait(1):
+                self._clear_console()
+                self.temperature_sensor.measure()
+                self.humidity_sensor.measure()
 
     def _choose_chart_for_sensor(self, sensor: Sensor, sensor_name: str) -> None:
         choice = self._ask_chart_choice(self.chart_factory, sensor_name)
         chart = self.chart_factory.create_chart(choice, sensor_name)
-        sensor.add_chart(chart)
+        sensor.register(chart)
 
     def _ask_chart_choice(self, chart_factory: ChartFactory, sensor_name: str) -> str:
         print(f"Choose a chart type for {sensor_name}:")

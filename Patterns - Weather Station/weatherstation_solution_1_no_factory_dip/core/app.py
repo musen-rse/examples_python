@@ -1,9 +1,9 @@
 import threading
 
 from typing import List
-from sensorchart.charts import ConsoleTableChart, ConsoleBarChart
-from sensorchart.core.charts_abc import Chart
-from sensorchart.core.sensors import TemperatureSensor
+from charts import ConsoleTableChart, ConsoleBarChart
+from core.charts_abc import Chart
+from core.sensors import TemperatureSensor
 
 
 class Application:

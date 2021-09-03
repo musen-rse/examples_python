@@ -1,6 +1,6 @@
 import random
 
-from sensorchart.charts import ConsoleTableChart
+from charts import ConsoleTableChart
 
 
 class TemperatureSensor:

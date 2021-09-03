@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import List, Tuple
 
-from sensorchart.core.charts_abc import Chart, ChartFactory
+from core.charts_abc import Chart, ChartFactory
 
 
 class ConsoleTableChart(Chart):

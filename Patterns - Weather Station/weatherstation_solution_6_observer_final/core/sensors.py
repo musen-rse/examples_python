@@ -1,9 +1,17 @@
 import random
+from abc import abstractmethod
 
-from sensorchart.core.observer_abc import Subject
+from core.observer_abc import Subject
 
 
-class TemperatureSensor(Subject[float]):
+class Sensor(Subject[float]):
+
+    @abstractmethod
+    def measure(self) -> float:
+        pass
+
+
+class TemperatureSensor(Sensor):
 
     def __init__(self):
         super().__init__()
@@ -24,7 +32,7 @@ class TemperatureSensor(Subject[float]):
         self._temperature = temperature
 
 
-class HumiditySensor(Subject[float]):
+class HumiditySensor(Sensor):
 
     def __init__(self):
         super().__init__()

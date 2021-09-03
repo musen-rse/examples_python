@@ -10,6 +10,9 @@ class ConsoleTableChart(Chart):
         self.values: List[Tuple[datetime, float]] = []
         self._column_headers = ["Time recorded", title]
 
+    def update(self, sender: Any, value: float) -> None:
+        self.draw(value)
+
     def draw(self, value: float) -> None:
         self._print_headers()
         self._collect_values(value)
@@ -34,6 +37,9 @@ class ConsoleBarChart(Chart):
     def __init__(self, title: str):
         self.bar_heights: List[float] = []
         self.title = title
+
+    def update(self, sender: Any, value: float) -> None:
+        self.draw(value)
 
     def draw(self, value: float) -> None:
         self._print_header()
