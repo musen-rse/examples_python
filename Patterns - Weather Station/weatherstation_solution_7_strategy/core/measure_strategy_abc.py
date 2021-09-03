@@ -15,3 +15,10 @@ class MeasureStrategy(ABC):
     @abstractmethod
     def measure(self):
         pass
+
+    def _measure_all_sensors(self):
+        for sensor in self._sensors:
+            sensor.measure()
+
+    def _clear_console(self):
+        print("\033[2J", flush=True)

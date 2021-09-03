@@ -3,5 +3,5 @@ from core.app import Application
 from measure_strategy import ContinuousMeasureStrategy, OneTimeMeasureStrategy, ManualMeasureStrategy
 
 if __name__ == "__main__":
-    app = Application(ConsoleChartFactory(), ManualMeasureStrategy())
+    app = Application(ConsoleChartFactory(), ContinuousMeasureStrategy())
     app.run()

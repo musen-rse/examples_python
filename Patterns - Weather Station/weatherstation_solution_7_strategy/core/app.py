@@ -40,5 +40,3 @@ class Application:
         choice_index = int(input_choice) - 1
         return chart_factory.get_chart_choices()[choice_index]
 
-    def _clear_console(self):
-        print("\033[2J", flush=True)

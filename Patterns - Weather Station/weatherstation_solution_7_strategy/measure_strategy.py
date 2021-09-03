@@ -8,8 +8,8 @@ from core.measure_strategy_abc import MeasureStrategy
 class OneTimeMeasureStrategy(MeasureStrategy):
 
     def measure(self):
-        for sensor in self._sensors:
-            sensor.measure()
+        self._clear_console()
+        self._measure_all_sensors()
 
 
 class ContinuousMeasureStrategy(MeasureStrategy):
@@ -17,8 +17,8 @@ class ContinuousMeasureStrategy(MeasureStrategy):
     def measure(self):
         stop_event = threading.Event()
         while not stop_event.wait(1):
-            for sensor in self._sensors:
-                sensor.measure()
+            self._clear_console()
+            self._measure_all_sensors()
 
 
 class ManualMeasureStrategy(MeasureStrategy):
@@ -34,8 +34,8 @@ class ManualMeasureStrategy(MeasureStrategy):
 
     def on_press(self, key: Key):
         if key.char == "m":
-            for sensor in self._sensors:
-                sensor.measure()
+            self._clear_console()
+            self._measure_all_sensors()
 
         elif key.char == "q":
             self.listener.stop()
