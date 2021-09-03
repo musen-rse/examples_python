@@ -1,7 +1,7 @@
 import threading
 
-from sensorchart.charts import ConsoleTableChart
-from sensorchart.core.sensors import TemperatureSensor
+from charts import ConsoleTableChart
+from core.sensors import TemperatureSensor
 
 
 class Application:
