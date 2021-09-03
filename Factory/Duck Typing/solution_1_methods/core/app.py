@@ -1,12 +1,9 @@
-from core.abstractions import Shape, ShapeFactory
-
-
 class Application:
-    def __init__(self, shape_factory: ShapeFactory):
+    def __init__(self, shape_factory):
         self.shape_factory = shape_factory
 
     def run(self):
-        shapes: List[Shape] = [
+        shapes = [
             self.shape_factory.create_circle(),
             self.shape_factory.create_rectangle(),
             self.shape_factory.create_triangle(),

@@ -1,22 +1,19 @@
-from core.abstractions import Shape, ShapeFactory
-
-
-class Circle(Shape):
+class Circle():
     def draw(self):
         print("Drawing Circle")
 
 
-class Rectangle(Shape):
+class Rectangle():
     def draw(self):
         print("Drawing Rectangle")
 
 
-class Triangle(Shape):
+class Triangle():
     def draw(self):
         print("Drawing Triangle")
 
 
-class ShapeFactoryImpl(ShapeFactory):
+class ShapeFactory():
     def create_circle(self):
         return Circle()
 

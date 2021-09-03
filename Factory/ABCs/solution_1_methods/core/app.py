@@ -1,4 +1,5 @@
-from core.abstractions import Shape, ShapeFactory
+from typing import List
+from core.shape_abc import Shape, ShapeFactory
 
 
 class Application:
@@ -7,9 +8,9 @@ class Application:
 
     def run(self):
         shapes: List[Shape] = [
-            self.shape_factory.create_shape("circle"),
-            self.shape_factory.create_shape("rectangle"),
-            self.shape_factory.create_shape("triangle")
+            self.shape_factory.create_circle(),
+            self.shape_factory.create_rectangle(),
+            self.shape_factory.create_triangle(),
         ]
 
         for shape in shapes:

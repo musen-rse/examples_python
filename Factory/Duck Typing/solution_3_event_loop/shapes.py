@@ -1,27 +1,23 @@
-from core.abstractions import Shape, ShapeFactory
-from typing import List
-
-
-class Circle(Shape):
+class Circle():
     def draw(self):
         print("Drawing Circle")
 
 
-class Rectangle(Shape):
+class Rectangle():
     def draw(self):
         print("Drawing Rectangle")
 
 
-class Triangle(Shape):
+class Triangle():
     def draw(self):
         print("Drawing Triangle")
 
 
-class ShapeFactoryImpl(ShapeFactory):
+class ShapeFactory():
     def __init__(self):
         self.shape_choices = ['circle', 'rectangle', 'triangle']
 
-    def create_shape(self, shape: str) -> Shape:
+    def create_shape(self, shape: str):
         if shape == 'circle':
             return Circle()
         elif shape == 'rectangle':
@@ -31,5 +27,5 @@ class ShapeFactoryImpl(ShapeFactory):
         else:
             raise ValueError('Invalid shape')
 
-    def get_shape_choices(self) -> List[str]:
+    def get_shape_choices(self):
         return self.shape_choices

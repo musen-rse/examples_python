@@ -1,4 +1,5 @@
-from core.abstractions import Shape, ShapeFactory
+from typing import List
+from core.shape_abc import Shape, ShapeFactory
 
 
 class Application:

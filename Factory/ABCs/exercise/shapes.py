@@ -1,4 +1,4 @@
-from core.abstractions import Shape
+from core.shape_abc import Shape
 
 
 class Circle(Shape):
