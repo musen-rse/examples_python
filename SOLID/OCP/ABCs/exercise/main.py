@@ -1,4 +1,3 @@
-import math
 from core.app import Application
 from shapes import Circle, Square
 
