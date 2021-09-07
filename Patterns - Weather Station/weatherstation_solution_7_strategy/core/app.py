@@ -4,7 +4,7 @@ from typing import List
 from core.charts_abc import ChartFactory
 from core.logger import ObservingLogger
 from core.measure_strategy_abc import MeasureStrategy
-from core.sensors import HumiditySensor, TemperatureSensor, Sensor
+from core.sensors_abc import Sensor
 
 
 class Application:

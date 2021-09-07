@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-from core.sensors import Sensor
+from core.sensors_abc import Sensor
 
 
 class MeasureStrategy(ABC):

@@ -3,7 +3,7 @@ from typing import List
 
 from core.charts_abc import ChartFactory
 from core.logger import ObservingLogger
-from core.sensors import Sensor
+from core.sensors_abc import Sensor
 
 
 class Application:

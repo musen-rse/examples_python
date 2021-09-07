@@ -2,7 +2,7 @@ import threading
 from typing import List
 
 from core.charts_abc import ChartFactory
-from core.sensors import Sensor
+from core.sensors_abc import Sensor
 
 
 class Application:

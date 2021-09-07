@@ -1,19 +1,6 @@
 import random
-from abc import abstractmethod
 
-from core.observer_abc import Subject
-
-
-class Sensor(Subject[float]):
-
-    @abstractmethod
-    def measure(self) -> float:
-        pass
-
-    @property
-    @abstractmethod
-    def physical_quantity(self) -> str:
-        pass
+from core.sensors_abc import Sensor
 
 
 class TemperatureSensor(Sensor):
@@ -26,7 +13,7 @@ class TemperatureSensor(Sensor):
         change = random.randint(-5, 5)
         self.temperature = self._temperature + change
 
-        self.notify_all(self.temperature)
+        self.draw_all(self.temperature)
 
     @property
     def temperature(self):
@@ -51,7 +38,7 @@ class HumiditySensor(Sensor):
         change = random.randint(-2, 2)
         self.humidity = self._humidity + change
 
-        self.notify_all(self.humidity)
+        self.draw_all(self.humidity)
 
     @property
     def humidity(self):
