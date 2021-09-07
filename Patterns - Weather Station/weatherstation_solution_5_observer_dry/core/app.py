@@ -1,28 +1,37 @@
 import threading
+from typing import List
 
 from core.charts_abc import ChartFactory
-from core.sensors import HumiditySensor, TemperatureSensor, Sensor
+from core.sensors import Sensor
 
 
 class Application:
-    def __init__(self, chart_factory: ChartFactory) -> None:
-        self.temperature_sensor = TemperatureSensor()
-        self.humidity_sensor = HumiditySensor()
+
+    def __init__(self, sensors: List[Sensor], chart_factory: ChartFactory) -> None:
         self.chart_factory = chart_factory
+        self.sensors = sensors
 
     def run(self) -> None:
-        self._choose_chart_for_sensor(self.temperature_sensor, "Temperature")
-        self._choose_chart_for_sensor(self.humidity_sensor, "Humidity")
-
+        self._choose_charts_for_all_sensors()
         stop_event = threading.Event()
         while not stop_event.wait(1):
             self._clear_console()
-            self.temperature_sensor.measure()
-            self.humidity_sensor.measure()
+            self._measure_all_sensors()
 
-    def _choose_chart_for_sensor(self, sensor: Sensor, sensor_name: str) -> None:
-        choice = self._ask_chart_choice(self.chart_factory, sensor_name)
-        chart = self.chart_factory.create_chart(choice, sensor_name)
+    def _measure_all_sensors(self):
+        for sensor in self.sensors:
+            sensor.measure()
+
+    def _choose_charts_for_all_sensors(self) -> None:
+        for sensor in self.sensors:
+            self._choose_chart_for_sensor(sensor)
+
+    def _choose_chart_for_sensor(self, sensor: Sensor) -> None:
+        choice = self._ask_chart_choice(self.chart_factory,
+                                        sensor.physical_quantity)
+
+        chart = self.chart_factory.create_chart(choice,
+                                                sensor.physical_quantity)
         sensor.add_chart(chart)
 
     def _ask_chart_choice(self, chart_factory: ChartFactory, sensor_name: str) -> str:

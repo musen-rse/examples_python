@@ -23,6 +23,11 @@ class Sensor(ABC):
     def measure(self) -> float:
         pass
 
+    @property
+    @abstractmethod
+    def physical_quantity(self) -> str:
+        pass
+
 
 class TemperatureSensor(Sensor):
 
@@ -35,6 +40,10 @@ class TemperatureSensor(Sensor):
         self.temperature = self._temperature + change
 
         self.draw_all(self.temperature)
+
+    @property
+    def physical_quantity(self) -> str:
+        return "Temperature"
 
     @property
     def temperature(self):
@@ -56,6 +65,10 @@ class HumiditySensor(Sensor):
         self.humidity = self._humidity + change
 
         self.draw_all(self.humidity)
+
+    @property
+    def physical_quantity(self) -> str:
+        return "Humidity"
 
     @property
     def humidity(self):

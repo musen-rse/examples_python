@@ -1,7 +1,6 @@
 import threading
 
-from typing import List
-from core.charts_abc import Chart, ChartFactory
+from core.charts_abc import ChartFactory
 from core.sensors import TemperatureSensor
 
 

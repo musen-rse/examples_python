@@ -10,6 +10,11 @@ class Sensor(Subject[float]):
     def measure(self) -> float:
         pass
 
+    @property
+    @abstractmethod
+    def physical_quantity(self) -> str:
+        pass
+
 
 class TemperatureSensor(Sensor):
 
@@ -31,6 +36,10 @@ class TemperatureSensor(Sensor):
     def temperature(self, temperature):
         self._temperature = temperature
 
+    @property
+    def physical_quantity(self) -> str:
+        return "Temperature"
+
 
 class HumiditySensor(Sensor):
 
@@ -51,3 +60,7 @@ class HumiditySensor(Sensor):
     @humidity.setter
     def humidity(self, humidity):
         self._humidity = humidity
+
+    @property
+    def physical_quantity(self) -> str:
+        return "Humidity"
