@@ -4,8 +4,9 @@ from measure_strategy import ContinuousMeasureStrategy, OneTimeMeasureStrategy, 
 from sensors import HumiditySensor, TemperatureSensor
 
 if __name__ == "__main__":
-    app = Application(sensors=[TemperatureSensor(), HumiditySensor()],
+    sensors = [TemperatureSensor(), HumiditySensor()]
+    app = Application(sensors=sensors,
                       chart_factory=ConsoleChartFactory(),
-                      measure_strategy=ContinuousMeasureStrategy())
+                      measure_strategy=ContinuousMeasureStrategy(sensors))
 
     app.run()

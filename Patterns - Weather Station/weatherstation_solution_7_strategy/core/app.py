@@ -1,4 +1,3 @@
-import threading
 from typing import List
 
 from core.charts_abc import Chart, ChartColor, ChartFactory
@@ -12,9 +11,6 @@ class Application:
         self.sensors = sensors
         self.chart_factory = chart_factory
         self.measure_strategy = measure_strategy
-
-        for sensor in sensors:
-            self.measure_strategy.add_sensor(sensor)
 
     def run(self) -> None:
         with ObservingLogger("output.txt") as logger:

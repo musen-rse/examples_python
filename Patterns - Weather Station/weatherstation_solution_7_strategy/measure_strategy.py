@@ -1,15 +1,26 @@
 import threading
+from typing import List
 
 from pynput.keyboard import Key, Listener
 
+from core.sensors_abc import Sensor
 from core.measure_strategy_abc import MeasureStrategy
+
+
+def _clear_console():
+    print("\033[2J", flush=True)
+
+
+def _measure_all_sensors(sensors: List[Sensor]):
+    _clear_console()
+    for sensor in sensors:
+        sensor.measure()
 
 
 class OneTimeMeasureStrategy(MeasureStrategy):
 
     def measure(self):
-        self._clear_console()
-        self._measure_all_sensors()
+        _measure_all_sensors(self._sensors)
 
 
 class ContinuousMeasureStrategy(MeasureStrategy):
@@ -17,8 +28,7 @@ class ContinuousMeasureStrategy(MeasureStrategy):
     def measure(self):
         stop_event = threading.Event()
         while not stop_event.wait(1):
-            self._clear_console()
-            self._measure_all_sensors()
+            _measure_all_sensors(self._sensors)
 
 
 class ManualMeasureStrategy(MeasureStrategy):
@@ -34,8 +44,7 @@ class ManualMeasureStrategy(MeasureStrategy):
 
     def on_press(self, key: Key):
         if key.char == "m":
-            self._clear_console()
-            self._measure_all_sensors()
+            _measure_all_sensors(self._sensors)
 
         elif key.char == "q":
             self.listener.stop()

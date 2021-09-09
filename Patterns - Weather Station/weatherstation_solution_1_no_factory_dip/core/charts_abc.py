@@ -3,12 +3,12 @@ from enum import Enum, auto
 
 
 class ChartColor(Enum):
-    WHITE = auto()
+    RED = auto()
     BLUE = auto()
     CYAN = auto()
     GREEN = auto()
     YELLOW = auto()
-    RED = auto()
+    WHITE = auto()
 
 
 class Chart(ABC):

@@ -4,12 +4,12 @@ from typing import List, Tuple
 
 
 class ChartColor(Enum):
-    WHITE = auto()
+    RED = auto()
     BLUE = auto()
     CYAN = auto()
     GREEN = auto()
     YELLOW = auto()
-    RED = auto()
+    WHITE = auto()
 
 
 _DEFAULT_COLOR = '\033[0m'
