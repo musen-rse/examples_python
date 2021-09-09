@@ -1,0 +1,7 @@
+## Structure of this branch
+
+Contains only files relevant to `weatherstation_exercise`.
+
+- **Patterns - Weather Station**: contains complete solution
+- **stage_changes**: contains only files that change during stage (with the new solution). If a directory contains a `COPY_INSTRUCTIONS.md` follow its instructions at beginning of stage.
+- **weatherstation_exercise**: This is the starting point of the exercise. Open this folder in an extra VS Code window and start live sharing from there.
