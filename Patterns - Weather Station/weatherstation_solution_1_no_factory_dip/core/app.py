@@ -2,7 +2,7 @@ import threading
 
 from typing import List
 from charts import ConsoleTableChart, ConsoleBarChart
-from core.charts_abc import Chart
+from core.charts_abc import Chart, ChartColor
 from core.sensors import TemperatureSensor
 
 
@@ -10,8 +10,13 @@ class Application:
     def __init__(self) -> None:
         self.sensor = TemperatureSensor()
 
-        self.sensor.add_chart(ConsoleTableChart())
-        self.sensor.add_chart(ConsoleBarChart())
+        table_chart = ConsoleTableChart()
+        table_chart.color = ChartColor.RED
+        self.sensor.add_chart(table_chart)
+        
+        bar_chart = ConsoleBarChart()
+        bar_chart.color = ChartColor.BLUE
+        self.sensor.add_chart(bar_chart)
 
     def run(self) -> None:
         stop_event = threading.Event()

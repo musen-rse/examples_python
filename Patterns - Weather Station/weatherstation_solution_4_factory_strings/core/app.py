@@ -1,6 +1,6 @@
 import threading
 
-from core.charts_abc import ChartFactory
+from core.charts_abc import ChartFactory, ChartColor
 from core.sensors import TemperatureSensor
 
 
@@ -12,6 +12,7 @@ class Application:
     def run(self) -> None:
         choice = self._ask_chart_choice(self.chart_factory)
         chart = self.chart_factory.create_chart(choice)
+        chart.color = ChartColor.RED
         self.sensor.add_chart(chart)
 
         stop_event = threading.Event()
@@ -23,7 +24,7 @@ class Application:
         print("Choose a chart type:")
         for index, choice in enumerate(chart_factory.get_chart_choices()):
             print(f"{index + 1}. {choice}")
-        
+
         input_choice = input("Input the chart number: ")
         choice_index = int(input_choice) - 1
         return chart_factory.get_chart_choices()[choice_index]

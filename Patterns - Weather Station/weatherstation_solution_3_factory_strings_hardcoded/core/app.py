@@ -1,7 +1,7 @@
 import threading
 
 from typing import List
-from core.charts_abc import ChartFactory
+from core.charts_abc import ChartFactory, ChartColor
 from core.sensors import TemperatureSensor
 
 
@@ -9,11 +9,13 @@ class Application:
     def __init__(self, chart_factory: ChartFactory) -> None:
         self.sensor = TemperatureSensor()
 
-        chart = chart_factory.create_chart("table")
-        self.sensor.add_chart(chart)
+        table_chart = chart_factory.create_chart("table")
+        table_chart.color = ChartColor.RED
+        self.sensor.add_chart(table_chart)
 
-        chart = chart_factory.create_chart("bar")
-        self.sensor.add_chart(chart)
+        bar_chart = chart_factory.create_chart("bar")
+        bar_chart.color = ChartColor.BLUE
+        self.sensor.add_chart(bar_chart)
 
     def run(self) -> None:
         stop_event = threading.Event()

@@ -1,6 +1,6 @@
 import threading
 
-from charts import ConsoleTableChart
+from charts import ConsoleTableChart, ChartColor
 from core.sensors import TemperatureSensor
 
 
@@ -9,6 +9,7 @@ class Application:
         self.sensor = TemperatureSensor()
 
         chart = ConsoleTableChart()
+        chart.color = ChartColor.RED
         self.sensor.set_chart(chart)
 
     def run(self) -> None:

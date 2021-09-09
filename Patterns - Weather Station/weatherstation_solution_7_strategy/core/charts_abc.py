@@ -1,14 +1,34 @@
 from abc import ABC, abstractmethod
+from enum import Enum, auto
 from core.observer_abc import Observer
-from typing import Any, List
+from typing import List
+
+
+class ChartColor(Enum):
+    WHITE = auto()
+    BLUE = auto()
+    CYAN = auto()
+    GREEN = auto()
+    YELLOW = auto()
+    RED = auto()
 
 
 class Chart(Observer[float], ABC):
+
+    def __init__(self) -> None:
+        self._color = ChartColor.GREEN
 
     @abstractmethod
     def draw(self, value: float) -> None:
         pass
 
+    @property
+    def color(self) -> ChartColor:
+        return self._color
+
+    @color.setter
+    def color(self, value: ChartColor) -> None:
+        self._color = value
 
 
 class ChartFactory(ABC):
