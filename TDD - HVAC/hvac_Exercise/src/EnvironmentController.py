@@ -7,6 +7,7 @@ class HVAC(ABC):
     """
 
 
-class HVACController:
+class EnvironmentController:
 
     def __init__(self) -> None:
+        pass
