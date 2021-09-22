@@ -10,5 +10,7 @@ class HVAC(Protocol):
 
 class EnvironmentController:
 
-    def __init__(self) -> None:
+    def __init__() -> None:
         pass
+
+
