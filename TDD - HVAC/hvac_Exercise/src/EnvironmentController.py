@@ -1,7 +1,8 @@
-from abc import ABC, abstractmethod
+from abc import abstractmethod
+from typing import Protocol
 
 
-class HVAC(ABC):
+class HVAC(Protocol):
     """
     An abstract class representing the HVAC hardware
     """
