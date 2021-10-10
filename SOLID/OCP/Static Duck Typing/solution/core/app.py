@@ -1,9 +1,5 @@
-from typing import List, Protocol
-
-
-class Shape(Protocol):
-    def draw(self):
-        raise NotImplementedError
+from typing import List
+from core.shape import Shape
 
 
 class Application:

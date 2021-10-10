@@ -1,5 +1,7 @@
+from typing import List
+from core.shape import Shape
+from shapes_impl import Circle, Square, Rectangle
 from core.app import Application
-from shapes import Circle, Square, Rectangle
 
 
 def main() -> None:
