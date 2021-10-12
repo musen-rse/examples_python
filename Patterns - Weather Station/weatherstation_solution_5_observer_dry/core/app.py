@@ -28,7 +28,7 @@ class Application:
 
     def _choose_chart_for_sensor(self, index: int, sensor: Sensor) -> None:
         choice = self._ask_chart_choice(self.chart_factory,
-                                        sensor.physical_quantity)
+                                        sensor.name)
 
         chart = self._create_chart_with_color(choice, index, sensor)
         sensor.add_chart(chart)
@@ -36,7 +36,7 @@ class Application:
     def _create_chart_with_color(self, chart_choice: str, index: int, sensor: Sensor) -> Chart:
         color = list(ChartColor)[index]
         chart = self.chart_factory.create_chart(chart_choice,
-                                                sensor.physical_quantity)
+                                                sensor.name)
 
         chart.color = color
         return chart

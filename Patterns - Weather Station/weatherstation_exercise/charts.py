@@ -25,9 +25,9 @@ _CONSOLE_COLORS = {
 
 class ConsoleTableChart:
 
-    def __init__(self):
+    def __init__(self, title: str):
         self.values: List[Tuple[datetime, float]] = []
-        self._column_headers = ["Time recorded", "Value"]
+        self._column_headers = ["Time recorded", title]
         self._color: ChartColor = ChartColor.WHITE
 
     def draw(self, value: float) -> None:
@@ -36,8 +36,8 @@ class ConsoleTableChart:
         self._print_values()
 
     @property
-    def color(self) -> int:
-        return self._history_length
+    def color(self) -> ChartColor:
+        return self._color
 
     @color.setter
     def color(self, value: ChartColor) -> None:

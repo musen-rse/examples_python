@@ -51,7 +51,7 @@ class ConsoleBarChart(Chart):
     def __init__(self, title: str):
         super().__init__()
         self.bar_heights: List[float] = []
-        self.title = title
+        self._title = title
 
     def update(self, sender: Any, value: float) -> None:
         self.draw(value)
@@ -87,7 +87,8 @@ class ConsoleBarChart(Chart):
         self.bar_heights = self.bar_heights[-40:]
 
     def _print_header(self) -> None:
-        print(f"=========== BAR CHART: {self.title} ===========")
+        print(f"=========== BAR CHART ===========")
+        print(self._title)
 
     def get_bar_string(self, bar: float, height: float) -> str:
         if height == 0:

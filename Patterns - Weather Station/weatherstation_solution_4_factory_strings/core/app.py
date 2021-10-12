@@ -11,7 +11,7 @@ class Application:
 
     def run(self) -> None:
         choice = self._ask_chart_choice(self.chart_factory)
-        chart = self.chart_factory.create_chart(choice)
+        chart = self.chart_factory.create_chart(choice, self.sensor.name)
         chart.color = ChartColor.RED
         self.sensor.add_chart(chart)
 

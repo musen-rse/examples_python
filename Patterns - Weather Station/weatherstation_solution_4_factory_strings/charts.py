@@ -17,10 +17,10 @@ _CONSOLE_COLORS = {
 
 class ConsoleTableChart(Chart):
 
-    def __init__(self):
+    def __init__(self, title: str):
         super().__init__()
         self.values: List[Tuple[datetime, float]] = []
-        self._column_headers = ["Time recorded", "Value"]
+        self._column_headers = ["Time recorded", title]
 
     def draw(self, value: float) -> None:
         self._print_headers()
@@ -44,9 +44,10 @@ class ConsoleTableChart(Chart):
 
 
 class ConsoleBarChart(Chart):
-    def __init__(self):
+    def __init__(self, title: str):
         super().__init__()
         self.bar_heights: List[float] = []
+        self._title = title
 
     def draw(self, value: float) -> None:
         self._print_header()
@@ -80,6 +81,7 @@ class ConsoleBarChart(Chart):
 
     def _print_header(self) -> None:
         print("=========== BAR CHART ===========")
+        print(self._title)
 
     def get_bar_string(self, bar: float, height: float) -> str:
         if height == 0:
@@ -103,9 +105,9 @@ class ConsoleChartFactory(ChartFactory):
         }
 
 
-    def create_chart(self, chart_type: str) -> Chart:
+    def create_chart(self, chart_type: str, title: str) -> Chart:
         chart_class = self._chart_choices[chart_type]
-        return chart_class()
+        return chart_class(title)
 
     def get_chart_choices(self) -> List[str]:
         return sorted(self._chart_choices.keys())
