@@ -1,14 +1,14 @@
 from typing import Any, TextIO
-from core.observer_abc import Observer, Subject
+from core.observer_abc import Observer
 
 
-class ObservingLogger(Observer[float]):
+class Logger(Observer[float]):
     
     def __init__(self, filename: str) -> None:
         self.filename = filename
         self.file: TextIO = None
 
-    def __enter__(self) -> 'ObservingLogger':
+    def __enter__(self) -> 'Logger':
         self.open()
         return self
 
@@ -24,5 +24,5 @@ class ObservingLogger(Observer[float]):
     def log(self, message: str) -> None:
         self.file.write(message + "\n")
 
-    def update(self, sender: Subject[float], value: float) -> None:
+    def update(self, sender: Any, value: float) -> None:
         self.log(f"{type(sender).__name__}: {value:.2f}")

@@ -32,9 +32,9 @@ class Chart(ABC):
 class ChartFactory(ABC):
 
     @abstractmethod
-    def create_table_chart(self) -> Chart:
+    def create_table_chart(self, title: str) -> Chart:
         pass
 
     @abstractmethod
-    def create_bar_chart(self) -> Chart:
+    def create_bar_chart(self, title: str) -> Chart:
         pass

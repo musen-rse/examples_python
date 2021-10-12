@@ -16,16 +16,16 @@ class TemperatureSensor(Sensor):
         self.draw_all(self.temperature)
 
     @property
+    def name(self) -> str:
+        return "Temperature"
+
+    @property
     def temperature(self):
         return self._temperature
 
     @temperature.setter
     def temperature(self, temperature):
         self._temperature = temperature
-
-    @property
-    def physical_quantity(self) -> str:
-        return "Temperature"
 
 
 class HumiditySensor(Sensor):
@@ -41,6 +41,10 @@ class HumiditySensor(Sensor):
         self.draw_all(self.humidity)
 
     @property
+    def name(self) -> str:
+        return "Humidity"
+
+    @property
     def humidity(self):
         return self._humidity
 
@@ -48,6 +52,3 @@ class HumiditySensor(Sensor):
     def humidity(self, humidity):
         self._humidity = humidity
 
-    @property
-    def physical_quantity(self) -> str:
-        return "Humidity"

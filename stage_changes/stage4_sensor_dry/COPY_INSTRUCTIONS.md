@@ -21,14 +21,6 @@ class HumiditySensor:
             chart.draw(self.temperature)
 
     @property
-    def humidity(self):
-        return self._humidity
-
-    @humidity.setter
-    def humidity(self, humidity):
-        self._humidity = humidity
-
-    @property
-    def physical_quantity(self) -> str:
+    def name(self) -> str:
         return "Humidity"
 ```

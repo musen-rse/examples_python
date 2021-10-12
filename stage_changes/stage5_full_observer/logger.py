@@ -2,13 +2,13 @@ from typing import Any, TextIO
 from core.observer_abc import Observer, Subject
 
 
-class ObservingLogger(Observer[float]):
+class Logger(Observer[float]):
     
     def __init__(self, filename: str) -> None:
         self.filename = filename
         self.file: TextIO = None
 
-    def __enter__(self) -> 'ObservingLogger':
+    def __enter__(self) -> 'Logger':
         self.open()
         return self
 

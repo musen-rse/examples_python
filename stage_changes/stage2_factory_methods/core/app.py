@@ -8,11 +8,11 @@ class Application:
     def __init__(self, chart_factory: ChartFactory) -> None:
         self.sensor = TemperatureSensor()
 
-        table_chart = chart_factory.create_table_chart()
+        table_chart = chart_factory.create_table_chart(self.sensor.name)
         table_chart.color = ChartColor.RED
         self.sensor.add_chart(table_chart)
 
-        bar_chart = chart_factory.create_bar_chart()
+        bar_chart = chart_factory.create_bar_chart(self.sensor.name)
         bar_chart.color = ChartColor.BLUE
         self.sensor.add_chart(bar_chart)
 

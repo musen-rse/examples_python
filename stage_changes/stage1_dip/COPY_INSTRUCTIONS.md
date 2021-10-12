@@ -28,9 +28,9 @@ _CONSOLE_COLORS = {
 
 class ConsoleTableChart:
 
-    def __init__(self):
+    def __init__(self, title: str):
         self.values: List[Tuple[datetime, float]] = []
-        self._column_headers = ["Time recorded", "Value"]
+        self._column_headers = ["Time recorded", title]
         self._color: ChartColor = ChartColor.WHITE
 
     @property
@@ -63,9 +63,10 @@ class ConsoleTableChart:
 
 
 class ConsoleBarChart:
-    def __init__(self):
+    def __init__(self, title: str):
         self.bar_heights: List[float] = []
         self._color: ChartColor = ChartColor.WHITE
+        self._title = title
 
     @property
     def color(self) -> int:
@@ -107,6 +108,7 @@ class ConsoleBarChart:
 
     def _print_header(self) -> None:
         print("=========== BAR CHART ===========")
+        print(self._title)
 
     def get_bar_string(self, bar: float, height: float) -> str:
         if height == 0:

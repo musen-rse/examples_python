@@ -24,7 +24,7 @@ class TemperatureSensor(Sensor):
         self._temperature = temperature
 
     @property
-    def physical_quantity(self) -> str:
+    def name(self) -> str:
         return "Temperature"
 
 
@@ -49,5 +49,5 @@ class HumiditySensor(Sensor):
         self._humidity = humidity
 
     @property
-    def physical_quantity(self) -> str:
+    def name(self) -> str:
         return "Humidity"

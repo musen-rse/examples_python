@@ -24,5 +24,5 @@ class Sensor(ABC):
 
     @property
     @abstractmethod
-    def physical_quantity(self) -> str:
+    def name(self) -> str:
         pass

@@ -25,6 +25,10 @@ class TemperatureSensor:
             chart.draw(self.temperature)
 
     @property
+    def name(self) -> str:
+        return "Temperature"
+
+    @property
     def temperature(self):
         return self._temperature
 

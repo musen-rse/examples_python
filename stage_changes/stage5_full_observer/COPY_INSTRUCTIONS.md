@@ -1,13 +1,13 @@
 1. Create a file called logger.py in `core` and paste in the following code
 
 ```python
-class ObservingLogger:
+class Logger:
     
     def __init__(self, filename: str) -> None:
         self.filename = filename
         self.file: TextIO = None
 
-    def __enter__(self) -> 'ObservingLogger':
+    def __enter__(self) -> 'Logger':
         self.open()
         return self
 

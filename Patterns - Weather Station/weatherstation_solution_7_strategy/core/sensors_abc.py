@@ -11,5 +11,5 @@ class Sensor(Subject[float]):
 
     @property
     @abstractmethod
-    def physical_quantity(self) -> str:
+    def name(self) -> str:
         pass

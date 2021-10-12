@@ -8,7 +8,7 @@ class Application:
     def __init__(self) -> None:
         self.sensor = TemperatureSensor()
 
-        chart = ConsoleTableChart()
+        chart = ConsoleTableChart(self.sensor.name)
         chart.color = ChartColor.RED
         self.sensor.set_chart(chart)
 
