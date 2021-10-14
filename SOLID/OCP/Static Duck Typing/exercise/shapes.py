@@ -1,5 +1,5 @@
 class Circle:
-    def __init__(self, radius=1.0):
+    def __init__(self, radius: float = 1.0):
         self._radius: float = radius
 
     @property
@@ -8,7 +8,7 @@ class Circle:
 
 
 class Square:
-    def __init__(self, length=1.0):
+    def __init__(self, length: float = 1.0):
         self._length: float = length
 
     @property
