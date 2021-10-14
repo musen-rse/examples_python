@@ -1,4 +1,5 @@
 class Circle:
+
     def __init__(self, radius:float):
         self._radius = radius
         self._center_x = 0.
@@ -16,6 +17,7 @@ class Circle:
 
 
 class Rectangle:
+
     def __init__(self, width:float, height:float):
         self._width = width
         self._height = height
@@ -34,6 +36,7 @@ class Rectangle:
 
 
 class Triangle:
+
     def __init__(self, length:float):
         self._length = length
         self._center_x = 0.
@@ -51,6 +54,7 @@ class Triangle:
 
     
 class Hexagon:
+
     def __init__(self, length:float):
         self._length = length
         self._center_x = 0.
@@ -68,6 +72,7 @@ class Hexagon:
 
 
 class Square:
+    
     def __init__(self, length:float):
         self._length = length
         self._center_x = 0.

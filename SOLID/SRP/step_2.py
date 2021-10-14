@@ -1,4 +1,5 @@
 class Color:
+
     WHITE   = '\033[37m'
     BLUE    = '\033[94m'
     CYAN    = '\033[96m'
@@ -13,6 +14,7 @@ class Color:
 ###############################################################################
 
 class Rectangle:
+
     def __init__(self, width: int, height: int, color: str):
         self._width = width
         self._height = height
@@ -36,6 +38,7 @@ class Rectangle:
 # gui_app.py                                                                  #
 ###############################################################################
 class GuiApp:
+
     def run(self) -> None:
         print("GUI app")
         rectangle = Rectangle(10, 5, Color.BLUE)
@@ -46,6 +49,7 @@ class GuiApp:
 # geometry_app.py                                                             #
 ###############################################################################
 class GeometryApp:
+    
     def run(self) -> None:
         print("Console App")
         rectangle = Rectangle(2, 5, Color.RED)

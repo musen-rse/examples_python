@@ -2,6 +2,7 @@ from abc import ABC
 
 
 class Shape(ABC):
+
     def __init__(self) -> None:
         self._center_x = 0.
         self._center_y = 0.
@@ -15,6 +16,7 @@ class Shape(ABC):
 
 
 class Circle(Shape):
+
     def __init__(self, radius:float):
         super().__init__()
         self._radius = radius
@@ -24,6 +26,7 @@ class Circle(Shape):
 
 
 class Rectangle(Shape):
+
     def __init__(self, width:float, height:float):
         super().__init__()
         self._width = width
@@ -34,6 +37,7 @@ class Rectangle(Shape):
 
 
 class Triangle(Shape):
+
     def __init__(self, length:float):
         super().__init__()
         self._length = length
@@ -43,6 +47,7 @@ class Triangle(Shape):
 
     
 class Hexagon(Shape):
+
     def __init__(self, length:float):
         super().__init__()
         self._length = length
@@ -52,6 +57,7 @@ class Hexagon(Shape):
 
 
 class Square(Shape):
+    
     def __init__(self, length:float):
         super().__init__()
         self._length = length

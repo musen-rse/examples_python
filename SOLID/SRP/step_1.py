@@ -3,6 +3,7 @@
 ###############################################################################
 
 class Rectangle:
+
     def __init__(self, width: int, height: int):
         self._width = width
         self._height = height
@@ -25,6 +26,7 @@ class Rectangle:
 # gui_app.py                                                                  #
 ###############################################################################
 class GuiApp:
+
     def run(self) -> None:
         print("GUI app")
         rectangle = Rectangle(10, 5)
@@ -35,6 +37,7 @@ class GuiApp:
 # geometry_app.py                                                             #
 ###############################################################################
 class GeometryApp:
+    
     def run(self) -> None:
         print("Console App")
         rectangle = Rectangle(2, 5)
