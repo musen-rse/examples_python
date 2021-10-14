@@ -5,10 +5,6 @@ class Circle:
     def __init__(self, radius: float = 1.0) -> None:
         self._radius: float = radius
 
-    @property
-    def radius(self) -> float:
-        return self._radius
-
     def draw(self) -> None:
         print(f"Draw circle with radius: {self.radius}.")
 
@@ -16,10 +12,6 @@ class Circle:
 class Square:
     def __init__(self, length: float = 1.0) -> None:
         self._length: float = length
-
-    @property
-    def length(self) -> float:
-        return self._length
 
     def draw(self) -> None:
         print(f"Draw square with side length: {self.length}.")
