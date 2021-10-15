@@ -51,3 +51,28 @@ class HumiditySensor(Sensor):
     @property
     def name(self) -> str:
         return "Humidity"
+
+
+class BarometerSensor(Sensor):
+
+    def __init__(self):
+        super().__init__()
+        self._pressure = 1013 # hPa, https://en.wikipedia.org/wiki/Atmospheric_pressure
+
+    def measure(self):
+        change = random.randint(-20, 20)
+        self.pressure = self._pressure + change
+
+        self.notify_all(self.pressure)
+
+    @property
+    def pressure(self):
+        return self._pressure
+
+    @pressure.setter
+    def pressure(self, pressure):
+        self._pressure = pressure
+
+    @property
+    def name(self) -> str:
+        return "Atmospheric pressure"

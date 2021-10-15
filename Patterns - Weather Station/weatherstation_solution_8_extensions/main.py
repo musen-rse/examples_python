@@ -4,7 +4,7 @@ from core.app import Application
 from core.sensors_abc import Sensor
 from logger import Logger
 from measure_strategy import ContinuousMeasureStrategy, OneTimeMeasureStrategy, ManualMeasureStrategy
-from sensors import HumiditySensor, TemperatureSensor
+from sensors import HumiditySensor, TemperatureSensor, BarometerSensor
 
 
 def register_loggers_on_sensors(sensors) -> List[Logger]:
@@ -30,7 +30,7 @@ def close_loggers(loggers: List[Logger]) -> None:
 
 
 if __name__ == "__main__":
-    sensors = [TemperatureSensor(), HumiditySensor()]
+    sensors = [TemperatureSensor(), HumiditySensor(), BarometerSensor()]
     loggers = register_loggers_on_sensors(sensors)
 
     open_loggers(loggers)
