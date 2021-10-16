@@ -1,5 +1,6 @@
 from typing import List
-from charts import ConsoleChartFactory
+from console_charts import ConsoleChartFactory
+from qt_charts import QtChartFactory
 from core.app import Application
 from core.sensors_abc import Sensor
 from logger import Logger
@@ -35,10 +36,12 @@ if __name__ == "__main__":
 
     open_loggers(loggers)
 
+    chart_factory = QtChartFactory()
     app = Application(sensors=sensors,
-                      chart_factory=ConsoleChartFactory(),
+                    #   chart_factory=ConsoleChartFactory(),
+                      chart_factory=chart_factory,
                       measure_strategy=ContinuousMeasureStrategy(sensors))
 
-    app.run()
+    chart_factory.create_run_loop(app.run)
 
     close_loggers(loggers)
