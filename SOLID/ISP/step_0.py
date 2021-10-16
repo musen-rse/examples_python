@@ -18,14 +18,18 @@ class CommunicationDevice(Protocol):
         raise NotImplementedError
 
 
-def send_sms(device: CommunicationDevice) -> None:
-    device.send_sms("+123456790")
+class Person:
+    def __init__(self, communication_device: CommunicationDevice) -> None:
+        self._communication_device = communication_device
 
-def send_email(device: CommunicationDevice) -> None:
-    device.send_email("+123456790")
+    def send_sms(self, number: str) -> None:
+        self._communication_device.send_sms(number)
 
-def make_call(device: CommunicationDevice) -> None:
-    device.make_call("+123456790")
+    def send_email(self, address: str) -> None:
+        self._communication_device.send_email(address)
+
+    def make_call(self, number: str) -> None:
+        self._communication_device.make_call(number)
 
 
 ###############################################################################
@@ -39,10 +43,10 @@ class LandLinePhone(CommunicationDevice):
         print(f"Land line calling {number}")
 
     def send_sms(self, number: str) -> None:
-        pass
+        print("Land line can not send sms.")
 
     def send_email(self, address: str) -> None:
-        pass
+        print("Land line can not send email.")
 
 
 class SmartPhone(CommunicationDevice):
@@ -58,13 +62,14 @@ class SmartPhone(CommunicationDevice):
 
 
 if __name__ == "__main__":
-    smart_phone = SmartPhone()
-    make_call(smart_phone)
-    send_sms(smart_phone)
-    send_email(smart_phone)
+    
+    person1 = Person(LandLinePhone())
+    person1.make_call("+123456789")
+    person1.send_sms("+123456789")
+    person1.send_email("+123456789")
 
-    land_line_phone = LandLinePhone()
-    make_call(land_line_phone)
-    send_sms(land_line_phone)
-    send_email(land_line_phone)
+    person2 = Person(SmartPhone())
+    person2.make_call("+123456789")
+    person2.send_sms("+123456789")
+    person2.send_email("+123456789")
     
