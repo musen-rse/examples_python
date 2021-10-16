@@ -12,27 +12,28 @@ class CallingDevice(Protocol):
         raise NotImplementedError
 
 
-class SmsDevice(Protocol):
+class TextingDevice(Protocol):
+
     def send_sms(self, number: str) -> None:
         raise NotImplementedError
 
-
-class EmailDevice(Protocol):
     def send_email(self, address: str) -> None:
         raise NotImplementedError
 
 
-def send_sms(device: SmsDevice) -> None:
-    device.send_sms("+123456790")
+class Person:
+    def __init__(self, calling_device: CallingDevice, texting_device: TextingDevice) -> None:
+        self._calling_device = calling_device
+        self._texting_device = texting_device
 
+    def send_sms(self, number: str) -> None:
+        self._texting_device.send_sms(number)
 
-def send_email(device: EmailDevice) -> None:
-    device.send_email("+123456790")
+    def send_email(self, address: str) -> None:
+        self._texting_device.send_email(address)
 
-
-def make_call(device: CallingDevice) -> None:
-    device.make_call("+123456790")
-
+    def make_call(self, number: str) -> None:
+        self._calling_device.make_call(number)
 
 ###############################################################################
 # volatile part of our application                                            #
@@ -45,7 +46,7 @@ class LandLinePhone(CallingDevice):
         print(f"Land line calling {number}")
 
 
-class SmartPhone(CallingDevice, SmsDevice, EmailDevice):
+class SmartPhone(CallingDevice, TextingDevice):
 
     def make_call(self, number: str) -> None:
         print(f"Smartphone calling {number}")
@@ -58,11 +59,14 @@ class SmartPhone(CallingDevice, SmsDevice, EmailDevice):
 
 
 if __name__ == "__main__":
-    smart_phone = SmartPhone()
-    make_call(smart_phone)
-    send_sms(smart_phone)
-    send_email(smart_phone)
-
-    land_line_phone = LandLinePhone()
-    make_call(land_line_phone)
     
+    person1 = Person(LandLinePhone(), SmartPhone())
+    person1.make_call("+123456789")
+    person1.send_sms("+123456789")
+    person1.send_email("+123456789")
+    
+    smartPhone = SmartPhone()
+    person2 = Person(smartPhone, smartPhone)
+    person2.make_call("+123456789")
+    person2.send_sms("+123456789")
+    person2.send_email("+123456789")
