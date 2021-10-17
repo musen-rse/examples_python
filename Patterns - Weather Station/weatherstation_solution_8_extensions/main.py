@@ -8,7 +8,7 @@ from measure_strategy import ContinuousMeasureStrategy, OneTimeMeasureStrategy, 
 from sensors import HumiditySensor, TemperatureSensor, BarometerSensor
 
 
-def register_loggers_on_sensors(sensors) -> List[Logger]:
+def register_loggers_on_sensors(sensors: Sensor) -> List[Logger]:
         return [register_logger_on_sensor(sensor) 
                 for sensor in sensors]
 
