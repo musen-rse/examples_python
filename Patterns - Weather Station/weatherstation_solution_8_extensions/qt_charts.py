@@ -1,6 +1,6 @@
 from datetime import datetime
-from typing import Any, List, Tuple
-from core.charts_abc import Chart, ChartColor
+from typing import Any, List
+from core.charts_abc import Chart, ChartColor, ChartFactory
 from PySide6 import QtWidgets, QtCore, QtGui, QtCharts
 from typing import Callable
 import sys
@@ -25,7 +25,7 @@ class InvokeMethod(QtCore.QObject):
     called = QtCore.Signal()
 
     @QtCore.Slot()
-    def execute(self):
+    def execute(self) -> None:
         self.method()
         # trigger garbage collector
         self.setParent(None)
@@ -33,45 +33,45 @@ class InvokeMethod(QtCore.QObject):
 
 class WorkerThread(QtCore.QThread):
     
-    def __init__(self, run_loop: Callable):
+    def __init__(self, run_loop: Callable) -> None:
             super().__init__()
             self._run_loop = run_loop
             
-    def run(self):
+    def run(self) -> None:
         self._run_loop()
 
 
 class TableModel(QtCore.QAbstractTableModel):
-    def __init__(self):
+    def __init__(self) -> None:
         super(TableModel, self).__init__()
 
         self._data = [["-", "-", "-", "-", "-"]]
         self._headers = ["-:-:-", "-:-:-", "-:-:-", "-:-:-", "-:-:-"]
         # self.dataChanged.connect(self.view.refresh)
 
-    def data(self, index, role):
+    def data(self, index, role) -> Any:
         if role == QtCore.Qt.DisplayRole:
             # See below for the nested-list data structure.
             # .row() indexes into the outer list,
             # .column() indexes into the sub-list
             return self._data[index.row()][index.column()]
 
-    def rowCount(self, index):
+    def rowCount(self, index) -> int:
         # The length of the outer list.
         return len(self._data)
 
-    def columnCount(self, index):
+    def columnCount(self, index) -> int:
         # The following takes the first sub-list, and returns
         # the length (only works if all rows are an equal length)
         return len(self._data[0])
 
-    def headerData(self, section, orientation, role):
+    def headerData(self, section, orientation, role) -> str:
         if role != QtCore.Qt.DisplayRole or orientation != QtCore.Qt.Horizontal:
             return
         # What's the header for the given column?
         return self._headers[section]
 
-    def append(self, time: str, value: float):
+    def append(self, time: str, value: float) -> None:
         self._data[0].pop(0)
         self._data[0].append(value)
         self._headers.pop(0)
@@ -81,7 +81,7 @@ class TableModel(QtCore.QAbstractTableModel):
 
 
 class QtTableChartWindow(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.setGeometry(100, 100, 550, 50)
         self._table = QtWidgets.QTableView()
@@ -95,7 +95,7 @@ class QtTableChartWindow(QtWidgets.QMainWindow):
 
 
 
-class QtTableChart(QtCore.QObject):
+class QtTableChart(Chart):
 
     def __init__(self, title: str) -> None:
         super().__init__()
@@ -140,7 +140,7 @@ class QtTableChart(QtCore.QObject):
 
 
 class QtBarChartWindow(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
  
         self.setGeometry(100,100, 680,500)
@@ -148,7 +148,7 @@ class QtBarChartWindow(QtWidgets.QMainWindow):
         self.create_default_bars()
         self._max_value = 0
  
-    def create_default_bars(self):
+    def create_default_bars(self) -> None:
         #The QBarSet class represents a set of bars in the bar chart.
          # It groups several bars into a bar set
  
@@ -179,7 +179,7 @@ class QtBarChartWindow(QtWidgets.QMainWindow):
  
         self.setCentralWidget(chartView)
 
-    def append_data(self, time: str, value: float):
+    def append_data(self, time: str, value: float) -> None:
         set0: QtCharts.QBarSet = self._chart.series()[0].barSets()[0]
         set0.remove(0)
         set0.append(value)
@@ -193,12 +193,12 @@ class QtBarChartWindow(QtWidgets.QMainWindow):
             self._chart.axisY().setMax(value + 10)
             self._max_value = value
         
-    def set_bar_color(self, color: QtCore.Qt.GlobalColor):
+    def set_bar_color(self, color: QtCore.Qt.GlobalColor) -> None:
         set0: QtCharts.QBarSet = self._chart.series()[0].barSets()[0]
         set0.setColor(QtGui.QColor(color))
 
 
-class QtBarChart(QtCore.QObject):
+class QtBarChart(Chart):
     def __init__(self, title: str) -> None:
         super().__init__()
         InvokeMethod(lambda: self._create_window(title))
@@ -229,7 +229,7 @@ class QtBarChart(QtCore.QObject):
         InvokeMethod(lambda: self.window.set_bar_color(bgrd_colors[value]))
 
 
-class QtChartFactory(QtCore.QObject):
+class QtChartFactory(ChartFactory):
 
     def __init__(self) -> None:
         super().__init__()

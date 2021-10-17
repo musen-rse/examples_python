@@ -33,12 +33,12 @@ class ConsoleTableChart(Chart):
             console_color = _CONSOLE_COLORS[self._color]
             print(f"{console_color}{datestr}", value, _DEFAULT_COLOR, sep="\t")
 
-    def _print_headers(self):
+    def _print_headers(self) -> None:
         title = self._column_headers[1]
         print(f"=========== TABLE CHART: {title} ===========")
         print(*self._column_headers, sep="\t")
 
-    def _collect_values(self, value):
+    def _collect_values(self, value: float) -> None:
         self.values = self.values[-4:]
         self.values.append((datetime.now(), value))
 

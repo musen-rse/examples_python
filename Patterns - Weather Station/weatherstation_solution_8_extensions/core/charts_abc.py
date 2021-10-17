@@ -18,10 +18,6 @@ class Chart(Observer[float], ABC):
     def __init__(self) -> None:
         self._color = ChartColor.GREEN
 
-    @abstractmethod
-    def draw(self, value: float) -> None:
-        pass
-
     @property
     def color(self) -> ChartColor:
         return self._color
