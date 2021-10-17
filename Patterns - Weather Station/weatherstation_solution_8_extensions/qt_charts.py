@@ -1,6 +1,6 @@
 from datetime import datetime
-from typing import Any, List, Tuple
-from core.charts_abc import Chart, ChartColor
+from typing import Any, List
+from core.charts_abc import Chart, ChartColor, ChartFactory
 from PySide6 import QtWidgets, QtCore, QtGui, QtCharts
 from typing import Callable
 import sys
@@ -95,7 +95,7 @@ class QtTableChartWindow(QtWidgets.QMainWindow):
 
 
 
-class QtTableChart(QtCore.QObject):
+class QtTableChart(Chart):
 
     def __init__(self, title: str) -> None:
         super().__init__()
@@ -229,7 +229,7 @@ class QtBarChart(Chart):
         InvokeMethod(lambda: self.window.set_bar_color(bgrd_colors[value]))
 
 
-class QtChartFactory(QtCore.QObject):
+class QtChartFactory(ChartFactory):
 
     def __init__(self) -> None:
         super().__init__()
