@@ -3,4 +3,6 @@ __pycache__/
 .vscode
 
 # Ignore logger output
-*.txt
+Atmospheric pressure.txt
+Humidity.txt
+Temperature.txt
