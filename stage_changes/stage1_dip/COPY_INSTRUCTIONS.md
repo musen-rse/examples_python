@@ -34,8 +34,8 @@ class ConsoleTableChart:
         self._color: ChartColor = ChartColor.WHITE
 
     @property
-    def color(self) -> int:
-        return self._history_length
+    def color(self) -> ChartColor:
+        return self._color
 
     @color.setter
     def color(self, value: ChartColor) -> None:
@@ -69,8 +69,8 @@ class ConsoleBarChart:
         self._title = title
 
     @property
-    def color(self) -> int:
-        return self._history_length
+    def color(self) -> ChartColor:
+        return self._color
 
     @color.setter
     def color(self, value: ChartColor) -> None:
