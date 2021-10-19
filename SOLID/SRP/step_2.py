@@ -15,10 +15,9 @@ class Color:
 
 class Rectangle:
 
-    def __init__(self, width: int, height: int, color: str):
+    def __init__(self, width: int, height: int):
         self._width = width
         self._height = height
-        self._color = color
 
     def area(self) -> int:
         return self._width * self._height
@@ -28,10 +27,30 @@ class Rectangle:
 
     def __str__(self) -> str:
         return f"Rectangle({self._width}, {self._height})"
+    
+    @property
+    def width(self) -> int:
+        return self._width
+
+    @property
+    def height(self) -> int:
+        return self._height
+
+
+###############################################################################
+# graphical_rectangle.py                                                      #
+###############################################################################
+
+class GraphicalRectangle:
+
+    def __init__(self, rectangle: Rectangle, color: str):
+        self._rectangle = rectangle
+        self._color = color
 
     def draw(self) -> None:
-        for i in range(self._height):
-            print(self._color + "*" * self._width + Color.DEFAULT)
+        for i in range(self._rectangle.height):
+            print(self._color + "*" * self._rectangle.width + Color.DEFAULT)
+
 
 
 ###############################################################################
@@ -41,7 +60,7 @@ class GuiApp:
 
     def run(self) -> None:
         print("GUI app")
-        rectangle = Rectangle(10, 5, Color.BLUE)
+        rectangle = GraphicalRectangle(Rectangle(10, 5), Color.RED)
         rectangle.draw()
 
 
@@ -52,7 +71,7 @@ class GeometryApp:
     
     def run(self) -> None:
         print("Console App")
-        rectangle = Rectangle(2, 5, Color.RED)
+        rectangle = Rectangle(2, 5)
         print(f"{rectangle} with area:{rectangle.area()} and perimeter:{rectangle.perimeter()}")
 
 
