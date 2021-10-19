@@ -1,12 +1,24 @@
+class Color:
+
+    WHITE   = '\033[37m'
+    BLUE    = '\033[94m'
+    CYAN    = '\033[96m'
+    GREEN   = '\033[92m'
+    YELLOW  = '\033[93m'
+    RED     = '\033[91m'
+    DEFAULT = '\033[0m'
+
+
 ###############################################################################
 # rectangle.py                                                                #
 ###############################################################################
 
 class Rectangle:
 
-    def __init__(self, width: int, height: int):
+    def __init__(self, width: int, height: int, color: str):
         self._width = width
         self._height = height
+        self._color = color
 
     def area(self) -> int:
         return self._width * self._height
@@ -19,7 +31,7 @@ class Rectangle:
 
     def draw(self) -> None:
         for i in range(self._height):
-            print("*" * self._width)
+            print(self._color + "*" * self._width + Color.DEFAULT)
 
 
 ###############################################################################
@@ -29,7 +41,7 @@ class GuiApp:
 
     def run(self) -> None:
         print("GUI app")
-        rectangle = Rectangle(10, 5)
+        rectangle = Rectangle(10, 5, Color.BLUE)
         rectangle.draw()
 
 
@@ -40,7 +52,7 @@ class GeometryApp:
     
     def run(self) -> None:
         print("Console App")
-        rectangle = Rectangle(2, 5)
+        rectangle = Rectangle(2, 5, Color.RED)
         print(f"{rectangle} with area:{rectangle.area()} and perimeter:{rectangle.perimeter()}")
 
 
