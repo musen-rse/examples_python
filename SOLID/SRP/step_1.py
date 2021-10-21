@@ -9,10 +9,6 @@ class Color:
     DEFAULT = '\033[0m'
 
 
-###############################################################################
-# rectangle.py                                                                #
-###############################################################################
-
 class Rectangle:
 
     def __init__(self, width: int, height: int, color: str):
@@ -35,18 +31,7 @@ class Rectangle:
 
 
 ###############################################################################
-# gui_app.py                                                                  #
-###############################################################################
-class GuiApp:
-
-    def run(self) -> None:
-        print("GUI app")
-        rectangle = Rectangle(10, 5, Color.BLUE)
-        rectangle.draw()
-
-
-###############################################################################
-# geometry_app.py                                                             #
+# Geometry App                                                                #
 ###############################################################################
 class GeometryApp:
     
@@ -54,6 +39,17 @@ class GeometryApp:
         print("Console App")
         rectangle = Rectangle(2, 5, Color.RED)
         print(f"{rectangle} with area:{rectangle.area()} and perimeter:{rectangle.perimeter()}")
+
+
+###############################################################################
+# GUI App                                                                     #
+###############################################################################
+class GuiApp:
+
+    def run(self) -> None:
+        print("GUI app")
+        rectangle = Rectangle(10, 5, Color.BLUE)
+        rectangle.draw()
 
 
 ###############################################################################

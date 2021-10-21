@@ -1,18 +1,7 @@
-class Color:
-
-    WHITE   = '\033[37m'
-    BLUE    = '\033[94m'
-    CYAN    = '\033[96m'
-    GREEN   = '\033[92m'
-    YELLOW  = '\033[93m'
-    RED     = '\033[91m'
-    DEFAULT = '\033[0m'
-
 
 ###############################################################################
-# rectangle.py                                                                #
+# Geometry App                                                                #
 ###############################################################################
-
 class Rectangle:
 
     def __init__(self, width: int, height: int):
@@ -37,9 +26,30 @@ class Rectangle:
         return self._height
 
 
+class GeometryApp:
+    
+    def run(self) -> None:
+        print("Console App")
+        rectangle = Rectangle(2, 5)
+        print(f"{rectangle} with area:{rectangle.area()} and perimeter:{rectangle.perimeter()}")
+
+
+
+
 ###############################################################################
-# graphical_rectangle.py                                                      #
+# Gui App                                                                     #
 ###############################################################################
+
+class Color:
+
+    WHITE   = '\033[37m'
+    BLUE    = '\033[94m'
+    CYAN    = '\033[96m'
+    GREEN   = '\033[92m'
+    YELLOW  = '\033[93m'
+    RED     = '\033[91m'
+    DEFAULT = '\033[0m'
+
 
 class GraphicalRectangle:
 
@@ -52,10 +62,6 @@ class GraphicalRectangle:
             print(self._color + "*" * self._rectangle.width + Color.DEFAULT)
 
 
-
-###############################################################################
-# gui_app.py                                                                  #
-###############################################################################
 class GuiApp:
 
     def run(self) -> None:
@@ -63,16 +69,6 @@ class GuiApp:
         rectangle = GraphicalRectangle(Rectangle(10, 5), Color.RED)
         rectangle.draw()
 
-
-###############################################################################
-# geometry_app.py                                                             #
-###############################################################################
-class GeometryApp:
-    
-    def run(self) -> None:
-        print("Console App")
-        rectangle = Rectangle(2, 5)
-        print(f"{rectangle} with area:{rectangle.area()} and perimeter:{rectangle.perimeter()}")
 
 
 ###############################################################################
