@@ -13,7 +13,7 @@ class ChartColor(Enum):
     WHITE = auto()
 
 
-class Chart(Observer[float], ABC):
+class Chart(Observer):
 
     def __init__(self) -> None:
         self._color = ChartColor.GREEN
