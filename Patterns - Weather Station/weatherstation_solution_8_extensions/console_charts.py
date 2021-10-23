@@ -115,5 +115,5 @@ class ConsoleChartFactory(ChartFactory):
         chart_class = self._chart_choices[chart_type]
         return chart_class(title)
 
-    def get_chart_choices(self) -> List[str]:
+    def get_chart_types(self) -> List[str]:
         return sorted(self._chart_choices.keys())

@@ -34,5 +34,5 @@ class ChartFactory(ABC):
         pass
 
     @abstractmethod
-    def get_chart_choices(self) -> List[str]:
+    def get_chart_types(self) -> List[str]:
         pass

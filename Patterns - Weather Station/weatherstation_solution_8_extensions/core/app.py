@@ -36,9 +36,9 @@ class Application:
 
     def _ask_chart_choice(self, chart_factory: ChartFactory, sensor_name: str) -> str:
         print(f"Choose a chart type for {sensor_name}:")
-        for index, choice in enumerate(chart_factory.get_chart_choices()):
+        for index, choice in enumerate(chart_factory.get_chart_types()):
             print(f"{index + 1}. {choice}")
 
         input_choice = input("Input the chart number: ")
         choice_index = int(input_choice) - 1
-        return chart_factory.get_chart_choices()[choice_index]
+        return chart_factory.get_chart_types()[choice_index]
