@@ -27,11 +27,10 @@ class Application:
         sensor.register(chart)
 
     def _create_chart_with_color(self, chart_choice: str, index: int, sensor: Sensor) -> Chart:
-        color = list(ChartColor)[index]
         chart = self.chart_factory.create_chart(chart_choice,
                                                 sensor.name)
 
-        chart.color = color
+        chart.set_color(ChartColor.random_color())
         return chart
 
     def _ask_chart_choice(self, chart_factory: ChartFactory, sensor_name: str) -> str:

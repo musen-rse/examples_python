@@ -112,12 +112,7 @@ class QtTableChart(Chart):
     def update(self, sender: Any, value: float) -> None:
         InvokeMethod(lambda: self.window.model.append(datetime.now().strftime("%H:%M:%S"), value))
 
-    @property
-    def color(self) -> ChartColor:
-        return self._color
-
-    @color.setter
-    def color(self, value: ChartColor) -> None:
+    def set_color(self, value: ChartColor) -> None:
         self._color = value
         # bgrd_colors = {
         #     ChartColor.RED: "background-color:red;",
@@ -212,12 +207,7 @@ class QtBarChart(Chart):
     def update(self, sender: Any, value: float) -> None:
         InvokeMethod(lambda: self.window.append_data(datetime.now().strftime("%H:%M:%S"), value))
 
-    @property
-    def color(self) -> ChartColor:
-        return self._color
-
-    @color.setter
-    def color(self, value: ChartColor) -> None:
+    def set_color(self, value: ChartColor) -> None:
         self._color = value
         bgrd_colors = {
             ChartColor.RED: QtCore.Qt.red,
