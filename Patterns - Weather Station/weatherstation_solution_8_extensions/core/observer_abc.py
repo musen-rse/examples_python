@@ -1,24 +1,22 @@
 from abc import ABC, abstractmethod
-from typing import Any, Generic, List, TypeVar
+from typing import Any, List
 
-T = TypeVar('T')
-
-class Observer(ABC, Generic[T]):
+class Observer(ABC):
     @abstractmethod
-    def update(self, sender: Any, value: T) -> None:
+    def update(self, sender: Any, value: float) -> None:
         pass
 
 
-class Subject(ABC, Generic[T]):
+class Subject(ABC):
     def __init__(self) -> None:
-        self.observers: List[Observer[T]] = []
+        self.observers: List[Observer] = []
 
-    def register(self, observer: Observer[T]) -> None:
+    def register(self, observer: Observer) -> None:
         self.observers.append(observer)
 
-    def unregister(self, observer: Observer[T]) -> None:
+    def unregister(self, observer: Observer) -> None:
         self.observers.remove(observer)
 
-    def notify_all(self, value: T) -> None:
+    def notify_all(self, value: float) -> None:
         for observer in self.observers:
             observer.update(self, value)

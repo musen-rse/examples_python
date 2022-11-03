@@ -16,14 +16,6 @@ class TemperatureSensor(Sensor):
         self.notify_all(self.temperature)
 
     @property
-    def temperature(self) -> int:
-        return self._temperature
-
-    @temperature.setter
-    def temperature(self, temperature: int) -> None:
-        self._temperature = temperature
-
-    @property
     def name(self) -> str:
         return "Temperature"
 
@@ -41,14 +33,6 @@ class HumiditySensor(Sensor):
         self.notify_all(self.humidity)
 
     @property
-    def humidity(self) -> int:
-        return self._humidity
-
-    @humidity.setter
-    def humidity(self, humidity: int) -> None:
-        self._humidity = humidity
-
-    @property
     def name(self) -> str:
         return "Humidity"
 
@@ -64,14 +48,6 @@ class BarometerSensor(Sensor):
         self.pressure = self._pressure + change
 
         self.notify_all(self.pressure)
-
-    @property
-    def pressure(self) -> int:
-        return self._pressure
-
-    @pressure.setter
-    def pressure(self, pressure: int) -> None:
-        self._pressure = pressure
 
     @property
     def name(self) -> str:

@@ -3,7 +3,7 @@ from abc import abstractmethod
 from core.observer_abc import Subject
 
 
-class Sensor(Subject[float]):
+class Sensor(Subject):
 
     @abstractmethod
     def measure(self) -> float:

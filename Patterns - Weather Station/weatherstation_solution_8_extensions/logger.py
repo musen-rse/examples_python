@@ -2,7 +2,7 @@ from typing import Any, TextIO
 from core.observer_abc import Observer
 
 
-class Logger(Observer[float]):
+class Logger(Observer):
     
     def __init__(self, filename: str) -> None:
         self.filename = filename
